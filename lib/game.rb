@@ -1,37 +1,57 @@
+require 'bean'
+
 class Game
+
   class Hand
     def initialize
-      @has_bean = false
+      @bean = nil
     end
 
     def empty?
-      !@has_bean
+      @bean.nil?
     end
 
-    def take_bean
-      @has_bean = true
+    def take_bean_from(jar)
+      if empty?
+        @bean = jar.take_bean
+      end
     end
 
-    def put_bean
-      @has_bean = false
+    def put_bean_in(jar)
+      if !empty?
+        jar.put_bean(@bean)
+        @bean = nil
+      end
     end
   end
 
   class Jar
     def initialize
-      @beans = 30
+      @beans = Array.new(6){ Bean.new(:red) }
+      @beans += Array.new(6){ Bean.new(:green) }
+      @beans += Array.new(6){ Bean.new(:blue) }
+      @beans += Array.new(6){ Bean.new(:yellow) }
+      @beans += Array.new(6){ Bean.new(:black) }
+    end
+
+    def empty?
+      @beans.empty?
     end
 
     def size
-      @beans
+      @beans.size
     end
 
     def take_bean
-      @beans -= 1
+      @beans.delete_at(Random.rand(size))
     end
 
-    def put_bean
-      @beans += 1
+    def put_bean(bean)
+      @beans << bean
+    end
+
+    def beans_that_are(colour)
+      @beans.select { |bean| bean.colour == colour }
     end
   end
 
@@ -43,17 +63,11 @@ class Game
   end
 
   def take_bean
-    if hand.empty?
-      jar.take_bean
-      hand.take_bean
-    end
+    hand.take_bean_from(jar)
   end
 
   def put_bean
-    if !hand.empty?
-      hand.put_bean
-      jar.put_bean
-    end
+    hand.put_bean_in(jar)
   end
 
 end
