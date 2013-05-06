@@ -1,5 +1,5 @@
 class Jar
-  def initialize(beans)
+  def initialize(beans=[])
     @beans = beans
   end
 
