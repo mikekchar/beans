@@ -1,4 +1,6 @@
 class Hand
+  attr_reader :bean
+
   def initialize
     @bean = nil
   end
@@ -13,7 +15,7 @@ class Hand
     end
   end
 
-  def put_bean_in(jar)
+  def put_bean_into(jar)
     if !empty?
       jar.put_bean(@bean)
       @bean = nil

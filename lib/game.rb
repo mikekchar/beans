@@ -21,12 +21,12 @@ class Game
     )
   end
 
-  def take_bean
-    hand.take_bean_from(jars[4])
+  def take_bean_from(jar)
+    hand.take_bean_from(jar)
   end
 
-  def put_bean
-    hand.put_bean_in(jars[4])
+  def put_bean_into(jar)
+    hand.put_bean_into(jar)
   end
 
 end

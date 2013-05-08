@@ -25,14 +25,14 @@ describe Hand do
   it "puts beans somewhere" do
     hand.take_bean_from(jar)
     expect(jar.size).to eq(29)
-    hand.put_bean_in(jar)
+    hand.put_bean_into(jar)
     expect(hand).to be_empty
     expect(jar.size).to eq(30)
   end
 
   it "can not put beans when empty" do
     expect(jar.size).to eq(30)
-    hand.put_bean_in(jar)
+    hand.put_bean_into(jar)
     expect(jar.size).to eq(30)
   end
 
