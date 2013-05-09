@@ -16,7 +16,7 @@ class Hand
   end
 
   def put_bean_into(jar)
-    if !empty?
+    if !empty? && jar.open?
       jar.put_bean(@bean)
       @bean = nil
     end

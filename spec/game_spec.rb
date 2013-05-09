@@ -24,7 +24,8 @@ describe Game do
 
       it "has an equal number of beans for each colour" do
         Game::BEAN_COLOURS.each do |colour|
-          expect(last_jar.beans_that_are(colour).size).to eq(Game::BEANS_PER_COLOUR)
+          number_of_beans = last_jar.beans_that_are(colour).size
+          expect(number_of_beans).to eq(Game::BEANS_PER_COLOUR)
         end
       end
     end
@@ -71,5 +72,23 @@ describe Game do
         expect(first_jar.beans_that_are(@colour).size).to eq(1)
       end
     end
+  end
+
+  describe "open and closed jars" do
+    let(:first_jar) { game.jars[0] }
+    let(:last_jar) { game.jars[Game::BEAN_COLOURS.size - 1] }
+
+    describe "the first jar" do
+      it "is always open" do
+        number_of_beans = last_jar.size
+        number_of_beans.times do
+          game.take_bean_from(last_jar)
+          game.put_bean_into(first_jar)
+        end
+        expect(last_jar.size).to eq(0)
+        expect(first_jar.size).to eq(number_of_beans)
+      end
+    end
+
   end
 end
