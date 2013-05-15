@@ -1,6 +1,6 @@
-require 'bean'
-require 'hand'
-require 'jar'
+require 'domain/bean'
+require 'domain/hand'
+require 'domain/jar'
 
 class Game
 

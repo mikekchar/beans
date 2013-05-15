@@ -1,4 +1,5 @@
-require 'game'
+require 'domain/game'
+
 describe Game do
 
   subject(:game) { Game.new }

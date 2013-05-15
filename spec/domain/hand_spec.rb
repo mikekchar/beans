@@ -1,5 +1,5 @@
-require 'hand'
-require 'jar'
+require 'domain/hand'
+require 'domain/jar'
 
 describe Hand do
   subject(:hand) { Hand.new }

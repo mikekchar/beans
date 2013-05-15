@@ -1,5 +1,5 @@
-require 'jar'
-require 'bean'
+require 'domain/jar'
+require 'domain/bean'
 
 describe Jar do
   subject(:jar) { Jar.new }

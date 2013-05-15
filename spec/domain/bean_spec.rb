@@ -1,4 +1,4 @@
-require 'bean'
+require 'domain/bean'
 
 describe Bean do
 
