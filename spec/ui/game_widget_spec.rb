@@ -16,4 +16,16 @@ describe UI::GameWidget do
   it "renders the views" do
     expect(game_widget.render.size).to eq(6)
   end
+
+  it "reads from input" do
+    STDIN.should_receive(:gets).and_return("1")
+    expect(game_widget.read_input).to eq("1")
+  end
+
+  context "main loop" do
+    it "exits on 'q'" do
+      game_widget.should_receive(:read_input).and_return("q")
+      game_widget.main_loop
+    end
+  end
 end
