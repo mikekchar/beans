@@ -18,7 +18,7 @@ module UI
     end
 
     def render
-      return "Hand: #{@info.colour}"
+      return ["","Hand: #{@info.colour}"]
     end
   end
 end

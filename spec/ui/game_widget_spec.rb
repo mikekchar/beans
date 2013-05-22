@@ -12,4 +12,8 @@ describe UI::GameWidget do
   it "has a hand_view" do
     expect(game_widget.hand_view).to_not be_nil
   end
+
+  it "renders the views" do
+    expect(game_widget.render.size).to eq(6)
+  end
 end

@@ -10,5 +10,9 @@ module UI
       @jar_view = JarView.new(game.jars)
       @hand_view =HandView.new(game.hand)
     end
+
+    def render
+      jar_view.render + hand_view.render
+    end
   end
 end

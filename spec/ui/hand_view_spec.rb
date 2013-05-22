@@ -10,12 +10,12 @@ describe UI::HandView do
 
   it "shows an empty hand" do
     expect(hand).to be_empty
-    expect(hand_view.render).to eq("Hand: empty")
+    expect(hand_view.render[1]).to eq("Hand: empty")
   end
 
   it "shows the correct bean" do
     hand.take_bean_from(jar)
     expect(hand).to_not be_empty
-    expect(hand_view.render).to eq("Hand: red")
+    expect(hand_view.render[1]).to eq("Hand: red")
   end
 end
