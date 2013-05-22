@@ -3,7 +3,7 @@ require "ui/jar_view"
 require "ui/hand_view"
 
 module UI
-  class GameController
+  class GameWidget
     attr_reader :jar_view, :hand_view
     def initialize(game)
       @game = game
