@@ -15,7 +15,7 @@ module UI
     end
 
     def read_input
-      STDIN.gets
+      STDIN.gets.chop
     end
 
     def main_loop

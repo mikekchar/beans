@@ -13,7 +13,7 @@ describe UI::GameWidget do
   end
 
   it "reads from input" do
-    STDIN.should_receive(:gets).and_return("1")
+    STDIN.should_receive(:gets).and_return("1\n")
     expect(game_widget.read_input).to eq("1")
   end
 
