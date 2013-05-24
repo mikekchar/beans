@@ -4,15 +4,14 @@ require "ui/hand_view"
 
 module UI
   class GameWidget
-    attr_reader :jar_view, :hand_view
     def initialize(game)
       @game = game
-      @jar_view = JarView.new(game.jars)
-      @hand_view = HandView.new(game.hand)
     end
 
     def render
-      jar_view.render + hand_view.render
+      lines = JarView.new(@game.jars).render + 
+        HandView.new(@game.hand).render
+      STDOUT.puts(lines.join("\n"))
     end
 
     def read_input
@@ -22,7 +21,7 @@ module UI
     def main_loop
       input = nil
       while input != "q" do
-        STDOUT.puts(render.join("\n"))
+        render
         input = read_input
       end
     end

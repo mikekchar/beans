@@ -5,16 +5,11 @@ describe UI::GameWidget do
   let(:game) { Game.new() }
   let(:game_widget) { UI::GameWidget.new(game) }
 
-  it "has a jar_view" do
-    expect(game_widget.jar_view).to_not be_nil
-  end
-
-  it "has a hand_view" do
-    expect(game_widget.hand_view).to_not be_nil
-  end
-
   it "renders the views" do
-    expect(game_widget.render.size).to eq(6)
+    UI::JarView.any_instance.should_receive(:render).and_return([1,2])
+    UI::HandView.any_instance.should_receive(:render).and_return([3,4])
+    STDOUT.should_receive(:puts).with("1\n2\n3\n4")
+    game_widget.render
   end
 
   it "reads from input" do
@@ -24,6 +19,7 @@ describe UI::GameWidget do
 
   context "main loop" do
     it "exits on 'q'" do
+      game_widget.stub(:render)
       game_widget.should_receive(:read_input).and_return("q")
       game_widget.main_loop
     end
