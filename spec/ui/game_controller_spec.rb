@@ -10,7 +10,7 @@ describe UI::GameController do
     expect(controller.read_input).to eq("1")
   end
 
-  describe "handling input" do
+  describe "quitting" do
     it "quits on a 'q'" do
       controller.should_receive(:read_input).and_return("q")
       expect(controller.handle_input).to be_false
@@ -23,6 +23,14 @@ describe UI::GameController do
 
     it "continues on a '1'" do
       controller.should_receive(:read_input).and_return("1")
+      expect(controller.handle_input).to be_true
+    end
+  end
+
+  context "hand is empty" do
+    it "takes a bean if a number is entered" do
+      controller.stub(:read_input).and_return("0")
+      game.hand.should_receive(:take_bean_from).with(game.jars[0])
       expect(controller.handle_input).to be_true
     end
   end

@@ -13,7 +13,7 @@ class Jar
   end
 
   def take_bean
-    @beans.delete_at(Random.rand(size))
+    @beans.delete_at(Random.rand(size)) if !empty?
   end
 
   def put_bean(bean)

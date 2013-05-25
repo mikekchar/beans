@@ -11,14 +11,16 @@ module UI
     end
 
     def handle_input
-      status = true
-      case read_input
+      input = read_input
+      case input
       when "q", "Q"
-        status = quit
+        quit
+      when "0", "1", "2", "3", "4"
+        @game.hand.take_bean_from(@game.jars[input.to_i])
+        carry_on
       else
-        status = carry_on
+        carry_on
       end
-      status
     end
 
     def quit

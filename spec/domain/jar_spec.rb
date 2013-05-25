@@ -47,6 +47,12 @@ describe Jar do
       expect(jar.take_bean).to be(bean)
       expect(jar.size).to eq(0)
     end
+
+    it "doesn't mind if we try to take a bean from an empty jar" do
+      expect(jar.size).to eq(0)
+      expect(jar.take_bean).to be(nil)
+      expect(jar.size).to eq(0)
+    end
   end
 
   describe "closed jars" do
