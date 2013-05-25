@@ -3,25 +3,41 @@ require "domain/game"
 
 describe UI::GameWidget do
   let(:game) { Game.new() }
-  let(:game_widget) { UI::GameWidget.new(game) }
+  let(:widget) { UI::GameWidget.new(game) }
 
-  it "renders the views" do
-    UI::JarView.any_instance.should_receive(:render).and_return([1,2])
-    UI::HandView.any_instance.should_receive(:render).and_return([3,4])
-    STDOUT.should_receive(:puts).with("1\n2\n3\n4")
-    game_widget.render
-  end
-
-  it "reads from input" do
-    STDIN.should_receive(:gets).and_return("1\n")
-    expect(game_widget.read_input).to eq("1")
+  describe "rendering" do
+    it "renders the views" do
+      UI::JarView.any_instance.should_receive(:render).and_return([1,2])
+      UI::HandView.any_instance.should_receive(:render).and_return([3,4])
+      STDOUT.should_receive(:puts).with("1\n2\n3\n4")
+      widget.render
+    end
   end
 
   context "main loop" do
-    it "exits on 'q'" do
-      game_widget.stub(:render)
-      game_widget.should_receive(:read_input).and_return("q")
-      expect(game_widget.main_loop).to be_false
+
+    it "renders" do
+      widget.controller.stub(:handle_input)
+      widget.should_receive(:render)
+      widget.main_loop
+    end
+
+    it "handles input" do
+      widget.stub(:render)
+      widget.controller.should_receive(:handle_input)
+      widget.main_loop
+    end
+
+    it "exits when the controller says so" do
+      widget.stub(:render)
+      widget.controller.stub(:handle_input).and_return(false)
+      expect(widget.main_loop).to be_false
+    end
+
+    it "exits when the controller says so" do
+      widget.stub(:render)
+      widget.controller.stub(:handle_input).and_return(true)
+      expect(widget.main_loop).to be_true
     end
   end
 end

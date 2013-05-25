@@ -1,11 +1,15 @@
 require "domain/game"
 require "ui/jar_view"
 require "ui/hand_view"
+require "ui/game_controller"
 
 module UI
   class GameWidget
+    attr_reader :controller
+
     def initialize(game)
       @game = game
+      @controller = UI::GameController.new(game)
     end
 
     def render
@@ -14,13 +18,9 @@ module UI
       STDOUT.puts(lines.join("\n"))
     end
 
-    def read_input
-      STDIN.gets.chop
-    end
-
     def main_loop
       render
-      read_input != "q"
+      @controller.handle_input
     end
 
     def run
