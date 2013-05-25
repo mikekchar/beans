@@ -21,7 +21,7 @@ describe UI::GameWidget do
     it "exits on 'q'" do
       game_widget.stub(:render)
       game_widget.should_receive(:read_input).and_return("q")
-      game_widget.main_loop
+      expect(game_widget.main_loop).to be_false
     end
   end
 end

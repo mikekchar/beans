@@ -19,11 +19,12 @@ module UI
     end
 
     def main_loop
-      input = nil
-      while input != "q" do
-        render
-        input = read_input
-      end
+      render
+      read_input != "q"
+    end
+
+    def run
+      while main_loop; end
     end
   end
 end
