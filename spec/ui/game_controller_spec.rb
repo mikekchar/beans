@@ -1,5 +1,6 @@
 require "ui/game_controller"
 require "domain/game"
+require "domain/bean"
 
 describe UI::GameController do
   let(:game) { Game.new() }
@@ -11,27 +12,41 @@ describe UI::GameController do
   end
 
   describe "quitting" do
-    it "quits on a 'q'" do
+    it "quits with a 'q'" do
       controller.should_receive(:read_input).and_return("q")
-      expect(controller.handle_input).to be_false
+      expect(controller.handle_input).to eq(controller.quit)
     end
 
-    it "quits on a 'Q'" do
+    it "quits with a 'Q'" do
       controller.should_receive(:read_input).and_return("Q")
-      expect(controller.handle_input).to be_false
+      expect(controller.handle_input).to eq(controller.quit)
     end
 
-    it "continues on a '1'" do
-      controller.should_receive(:read_input).and_return("1")
-      expect(controller.handle_input).to be_true
+    it "carries on with a jar number" do
+      game.jar_names.each do |name|
+        controller.should_receive(:read_input).and_return(name)
+        expect(controller.handle_input).to eq(controller.carry_on)
+      end
     end
   end
 
   context "hand is empty" do
-    it "takes a bean if a number is entered" do
+    it "takes a bean if a jar number is entered" do
+      game.jar_names.each do |name|
+        controller.stub(:read_input).and_return(name)
+        game.hand.should_receive(:take_bean_from).with(game.jars[name.to_i])
+        expect(controller.handle_input).to eq(controller.carry_on)
+      end
+    end
+  end
+
+  context "hand is full" do
+    it "puts a bean if a jar number is entered" do
+      game.hand.bean = Bean.new(:red)
+      expect(game.hand).to_not be_empty
       controller.stub(:read_input).and_return("0")
-      game.hand.should_receive(:take_bean_from).with(game.jars[0])
-      expect(controller.handle_input).to be_true
+      game.hand.should_receive(:put_bean_into).with(game.jars[0])
+      expect(controller.handle_input).to eq(controller.carry_on)
     end
   end
 

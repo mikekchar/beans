@@ -15,8 +15,12 @@ module UI
       case input
       when "q", "Q"
         quit
-      when "0", "1", "2", "3", "4"
-        @game.hand.take_bean_from(@game.jars[input.to_i])
+      when *@game.jar_names
+        if @game.hand.empty?
+          @game.hand.take_bean_from(@game.jars[input.to_i])
+        else
+          @game.hand.put_bean_into(@game.jars[input.to_i])
+        end
         carry_on
       else
         carry_on

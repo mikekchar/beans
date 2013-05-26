@@ -1,5 +1,5 @@
 class Hand
-  attr_reader :bean
+  attr_accessor :bean
 
   def initialize
     @bean = nil

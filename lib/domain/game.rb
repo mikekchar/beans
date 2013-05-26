@@ -21,6 +21,10 @@ class Game
     )
   end
 
+  def jar_names
+    [*0..@jars.size - 1].map do |num| num.to_s end
+  end
+
   def take_bean_from(jar)
     hand.take_bean_from(jar)
   end
