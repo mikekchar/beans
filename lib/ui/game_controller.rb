@@ -17,9 +17,9 @@ module UI
         quit
       when *@game.jar_names
         if @game.hand.empty?
-          @game.hand.take_bean_from(@game.jars[input.to_i])
+          @game.take_bean_from(@game.jars[input.to_i])
         else
-          @game.hand.put_bean_into(@game.jars[input.to_i])
+          @game.put_bean_into(@game.jars[input.to_i])
         end
         carry_on
       else

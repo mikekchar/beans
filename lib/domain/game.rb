@@ -4,7 +4,7 @@ require 'domain/jar'
 
 class Game
 
-  attr_reader :hand, :jars
+  attr_reader :hand, :jars, :turn
 
   BEAN_COLOURS = Set.new(
     [:red, :green, :blue, :yellow, :black]
@@ -12,6 +12,7 @@ class Game
   BEANS_PER_COLOUR = 6
 
   def initialize
+    @turn = 1
     @hand = Hand.new
     @jars = Array.new(BEAN_COLOURS.length - 1) { Jar.new([]) }
     @jars << Jar.new(
@@ -30,7 +31,9 @@ class Game
   end
 
   def put_bean_into(jar)
-    hand.put_bean_into(jar)
+    ret = hand.put_bean_into(jar)
+    @turn = @turn + 1 if ret
+    ret
   end
 
 end

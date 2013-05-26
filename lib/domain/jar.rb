@@ -17,7 +17,12 @@ class Jar
   end
 
   def put_bean(bean)
-    @beans << bean if open?
+    if open?
+      @beans << bean
+      return bean
+    else
+      return nil
+    end
   end
 
   def open

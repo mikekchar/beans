@@ -90,6 +90,38 @@ describe Game do
         expect(first_jar.size).to eq(number_of_beans)
       end
     end
-
   end
+
+  describe "turns" do
+    let(:first_jar) { game.jars[0] }
+    let(:last_jar) { game.jars[Game::BEAN_COLOURS.size - 1] }
+
+    it "starts at turn 1" do
+      expect(game.turn).to eq(1)
+    end
+
+    it "doesn't increase the turns when taking a bean" do
+      game.take_bean_from(last_jar)
+      expect(game.turn).to eq(1)
+    end
+
+    it "increases the turns when putting a bean" do
+      game.take_bean_from(last_jar)
+      game.put_bean_into(first_jar)
+      expect(game.turn).to eq(2)
+    end
+
+    it "doesn't increase the turns when jar is closed" do
+      game.take_bean_from(last_jar)
+      first_jar.close
+      game.put_bean_into(first_jar)
+      expect(game.turn).to eq(1)
+    end
+
+    it "doesn't increase the turns when hand is empty" do
+      game.put_bean_into(first_jar)
+      expect(game.turn).to eq(1)
+    end
+  end
+
 end

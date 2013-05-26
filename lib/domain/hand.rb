@@ -12,13 +12,19 @@ class Hand
   def take_bean_from(jar)
     if empty?
       @bean = jar.take_bean
+      return @bean
+    else
+      return nil
     end
   end
 
   def put_bean_into(jar)
     if !empty? && jar.open?
-      jar.put_bean(@bean)
-      @bean = nil
+      ret = jar.put_bean(@bean)
+      @bean = nil if ret
+      return ret
+    else
+      return nil
     end
   end
 end

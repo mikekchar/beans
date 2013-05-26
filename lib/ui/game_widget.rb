@@ -1,6 +1,7 @@
 require "domain/game"
 require "ui/jar_view"
 require "ui/hand_view"
+require "ui/turn_view"
 require "ui/game_controller"
 
 module UI
@@ -13,7 +14,8 @@ module UI
     end
 
     def render
-      lines = JarView.new(@game.jars).render + 
+      lines = TurnView.new(@game.turn).render +
+        JarView.new(@game.jars).render + 
         HandView.new(@game.hand).render
       STDOUT.puts(lines.join("\n"))
     end
