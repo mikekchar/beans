@@ -28,6 +28,12 @@ describe UI::GameController do
         expect(controller.handle_input).to eq(controller.carry_on)
       end
     end
+
+    it "passes with an empty string" do
+      controller.should_receive(:read_input).and_return("")
+      game.should_receive(:pass)
+      expect(controller.handle_input).to eq(controller.carry_on)
+    end
   end
 
   context "hand is empty" do

@@ -122,6 +122,11 @@ describe Game do
       game.put_bean_into(first_jar)
       expect(game.turn).to eq(1)
     end
+
+    it "takes a turn to pass" do
+      game.pass
+      expect(game.turn).to eq(2)
+    end
   end
 
 end

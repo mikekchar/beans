@@ -13,6 +13,9 @@ module UI
     def handle_input
       input = read_input
       case input
+      when ""
+        @game.pass
+        carry_on
       when "q", "Q"
         quit
       when *@game.jar_names

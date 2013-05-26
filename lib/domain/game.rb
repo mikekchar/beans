@@ -36,4 +36,8 @@ class Game
     ret
   end
 
+  def pass
+    @turn = @turn + 1
+  end
+
 end
