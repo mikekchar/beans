@@ -15,11 +15,12 @@ module UI
 
     def initialize(jars)
       @jar_info = jars.map { |jar| JarInfo.new(jar) }
+      @names = jars.names
     end
 
-    def render_jar_header(number)
+    def render_jar_header
       r = ""
-      number.times do |i|
+      @names.each do |i|
         r += "   #{i}   "
       end
       r
@@ -51,7 +52,7 @@ module UI
 
     def render()
       r = []
-      r << render_jar_header(@jar_info.size)
+      r << render_jar_header
       r << render_red_green_beans(@jar_info)
       r << render_blue_yellow_beans(@jar_info)
       r << render_black_beans(@jar_info)

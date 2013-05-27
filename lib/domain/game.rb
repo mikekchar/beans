@@ -1,6 +1,6 @@
 require 'domain/bean'
 require 'domain/hand'
-require 'domain/jar'
+require 'domain/jars'
 
 class Game
 
@@ -14,16 +14,10 @@ class Game
   def initialize
     @turn = 1
     @hand = Hand.new
-    @jars = Array.new(BEAN_COLOURS.length - 1) { Jar.new([]) }
-    @jars << Jar.new(
-      BEAN_COLOURS.map { |colour|
-        Array.new(BEANS_PER_COLOUR) { Bean.new(colour) }
-      }.flatten
-    )
-  end
-
-  def jar_names
-    [*0..@jars.size - 1].map do |num| num.to_s end
+    @jars = Jars.new(BEAN_COLOURS.length)
+    @jars.last.add_beans(BEAN_COLOURS.map { |colour|
+      Array.new(BEANS_PER_COLOUR) { Bean.new(colour) }
+    }.flatten)
   end
 
   def take_bean_from(jar)

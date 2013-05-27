@@ -4,6 +4,10 @@ class Jar
     @open = true
   end
 
+  def add_beans(bean_array)
+    @beans = @beans + bean_array
+  end
+
   def empty?
     @beans.empty?
   end

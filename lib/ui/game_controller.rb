@@ -18,11 +18,11 @@ module UI
         carry_on
       when "q", "Q"
         quit
-      when *@game.jar_names
+      when *@game.jars.names
         if @game.hand.empty?
-          @game.take_bean_from(@game.jars[input.to_i])
+          @game.take_bean_from(@game.jars.get(input))
         else
-          @game.put_bean_into(@game.jars[input.to_i])
+          @game.put_bean_into(@game.jars.get(input))
         end
         carry_on
       else

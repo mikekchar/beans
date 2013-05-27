@@ -23,7 +23,7 @@ describe UI::GameController do
     end
 
     it "carries on with a jar number" do
-      game.jar_names.each do |name|
+      game.jars.names.each do |name|
         controller.should_receive(:read_input).and_return(name)
         expect(controller.handle_input).to eq(controller.carry_on)
       end
@@ -38,9 +38,9 @@ describe UI::GameController do
 
   context "hand is empty" do
     it "takes a bean if a jar number is entered" do
-      game.jar_names.each do |name|
+      game.jars.names.each do |name|
         controller.stub(:read_input).and_return(name)
-        game.should_receive(:take_bean_from).with(game.jars[name.to_i])
+        game.should_receive(:take_bean_from).with(game.jars[name.to_i - 1])
         expect(controller.handle_input).to eq(controller.carry_on)
       end
     end
@@ -50,7 +50,7 @@ describe UI::GameController do
     it "puts a bean if a jar number is entered" do
       game.hand.bean = Bean.new(:red)
       expect(game.hand).to_not be_empty
-      controller.stub(:read_input).and_return("0")
+      controller.stub(:read_input).and_return("1")
       game.should_receive(:put_bean_into).with(game.jars[0])
       expect(controller.handle_input).to eq(controller.carry_on)
     end

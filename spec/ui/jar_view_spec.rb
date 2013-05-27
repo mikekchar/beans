@@ -1,16 +1,12 @@
 require "ui/jar_view"
-require "domain/jar"
+require "domain/jars"
 
 describe UI::JarView do
-  let(:jars) { Array.new(5) { Jar.new } }
+  let(:jars) { Jars.new(5) }
   let(:jar_view) { UI::JarView.new(jars) }
 
-  it "has the right number of jars" do
-    expect(jars.size).to eq(5)
-  end
-
   it "writes the numbers of the jar" do
-    expect(jar_view.render[0]).to eq("   0      1      2      3      4   ")
+    expect(jar_view.render[0]).to eq("   1      2      3      4      5   ")
   end
 
   it "writes the number of red and green beans in the jar" do
