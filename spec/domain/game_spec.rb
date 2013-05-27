@@ -124,8 +124,18 @@ describe Game do
     end
 
     it "takes a turn to pass" do
+      game.should_receive(:next_turn)
       game.pass
+    end
+
+    it "increments the turn on next_turn" do
+      game.next_turn
       expect(game.turn).to eq(2)
+    end
+
+    it "toggles the jars each turn" do
+      game.jars.should_receive(:toggle_state)
+      game.next_turn
     end
   end
 

@@ -26,12 +26,17 @@ class Game
 
   def put_bean_into(jar)
     ret = hand.put_bean_into(jar)
-    @turn = @turn + 1 if ret
+    next_turn if ret
     ret
   end
 
-  def pass
+  def next_turn
     @turn = @turn + 1
+    @jars.toggle_state(@turn)
+  end
+
+  def pass
+    next_turn
   end
 
 end

@@ -12,4 +12,14 @@ class Jars < Array
   def get(string)
     fetch(string.to_i - 1)
   end
+
+  def toggle_state(turn)
+    names.each do |name|
+      if (turn % name.to_i) == 0
+        get(name).open
+      else
+        get(name).close
+      end
+    end
+  end
 end

@@ -2,9 +2,10 @@ module UI
   class JarView
 
     class JarInfo
-      attr_reader :red, :green, :blue, :yellow, :black
+      attr_reader :open, :red, :green, :blue, :yellow, :black
 
       def initialize(jar)
+        @open = jar.open?
         @red = jar.beans_that_are(:red).size
         @green = jar.beans_that_are(:green).size
         @blue = jar.beans_that_are(:blue).size
@@ -20,8 +21,12 @@ module UI
 
     def render_jar_header
       r = ""
-      @names.each do |i|
-        r += "   #{i}   "
+      @names.each_index do |i|
+        if @jar_info[i].open
+          r += "   #{@names[i]}   "
+        else
+          r += "   -   "
+        end
       end
       r
     end
