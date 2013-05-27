@@ -1,16 +1,16 @@
-There are 5 jars, numbered 0-4.  Jar 4 contains 30 
+There are 5 jars, numbered 1-5.  The last jar contains 30 
 jelly beans; 6 each of the following colours: red, blue, 
 yellow, green, black.  The player's job is to sort the 
 jelly beans so that each jar contains 6 jelly beans of 
-the same colour (e.g., jar 0 contains all the red jelly 
-beans, jar 1 contains all the yellow jelly beans, etc).
+the same colour (e.g., jar 1 contains all the red jelly 
+beans, jar 2 contains all the yellow jelly beans, etc).
 
 Every turn the player can withdraw 1 *random* jelly bean 
 from any of the jars and deposit it in any *open* jar.  
-Specific jars are only open at certain times.  Jar 0 
-is open every turn.  Jar 1 is open every second turn.  
-Jar 2 is open every 4th turn.  Jar 3 is open every 8th 
-turn.  Jar 4 is open every 16th turn.  Alternatively, 
+Specific jars are only open at certain times.  Jar 2 
+is open every turn.  Jar 2 is open every second turn.  
+Jar 3 is open every 3rd turn.  Jar 4 is open every 4th 
+turn.  Jar 5 is open every 5th turn.  Alternatively, 
 the user can pass his turn (i.e., not deposit a 
 jelly bean) before or after they have withdrawn a jelly 
 bean.  The user can not withdraw another jelly bean 
