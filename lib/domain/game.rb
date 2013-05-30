@@ -1,6 +1,7 @@
 require 'domain/bean'
 require 'domain/hand'
 require 'domain/jars'
+require 'set'
 
 class Game
 

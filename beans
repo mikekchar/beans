@@ -1,4 +1,4 @@
 #!/bin/bash
 
-bundle exec ruby -Ilib lib/beans.rb
+ruby -Ilib lib/beans.rb
 
