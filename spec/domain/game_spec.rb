@@ -139,4 +139,12 @@ describe Game do
     end
   end
 
+  describe "points" do
+    let(:first_jar) { game.jars[0] }
+    let(:last_jar) { game.jars[Game::BEAN_COLOURS.size - 1] }
+
+    it "has 1000000 points at the start of the game" do
+      expect(game.points).to eq(1000000)
+    end
+  end
 end

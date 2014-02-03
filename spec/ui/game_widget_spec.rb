@@ -7,10 +7,11 @@ describe UI::GameWidget do
 
   describe "rendering" do
     it "renders the views" do
+      UI::PointsView.any_instance.should_receive(:render).and_return([0])
       UI::TurnView.any_instance.should_receive(:render).and_return([1])
       UI::JarView.any_instance.should_receive(:render).and_return([2,3])
       UI::HandView.any_instance.should_receive(:render).and_return([4,5])
-      STDOUT.should_receive(:puts).with("1\n2\n3\n4\n5")
+      STDOUT.should_receive(:puts).with("0\n1\n2\n3\n4\n5")
       widget.render
     end
   end

@@ -5,7 +5,7 @@ require 'set'
 
 class Game
 
-  attr_reader :hand, :jars, :turn
+  attr_reader :hand, :jars, :turn, :points
 
   BEAN_COLOURS = Set.new(
     [:red, :green, :blue, :yellow, :black]
@@ -14,6 +14,7 @@ class Game
 
   def initialize
     @turn = 1
+    @points = 1000000
     @hand = Hand.new
     @jars = Jars.new(BEAN_COLOURS.length)
     @jars.last.add_beans(BEAN_COLOURS.map { |colour|
