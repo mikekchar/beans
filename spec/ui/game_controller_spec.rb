@@ -56,4 +56,12 @@ describe UI::GameController do
     end
   end
 
+  context "wins points" do
+    it "transfers winnings when snapshotable" do
+      controller.should_receive(:read_input).and_return("snap")
+      game.should_receive(:snapped?).and_return(true)
+      controller.handle_input
+      expect(game.winnings).to eq(game.points)
+    end
+  end
 end

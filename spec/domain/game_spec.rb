@@ -152,5 +152,9 @@ describe Game do
       game.next_turn
       expect(game.points).to eq(start_points - 1000)
     end
+
+    it "has 0 winnings" do
+      expect(game.winnings).to eq(0)
+    end
   end
 end

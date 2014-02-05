@@ -25,6 +25,13 @@ module UI
           @game.put_bean_into(@game.jars.get(input))
         end
         carry_on
+      when "snap"
+        if @game.snapped?
+          #@game.
+          @game.winnings += @game.points
+        end
+        print "  \n"
+        carry_on
       else
         carry_on
       end
