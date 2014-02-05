@@ -146,5 +146,11 @@ describe Game do
     it "has 1000000 points at the start of the game" do
       expect(game.points).to eq(1000000)
     end
+
+    it "decreases points on next turn" do
+      start_points = game.points
+      game.next_turn
+      expect(game.points).to eq(start_points - 1000)
+    end
   end
 end

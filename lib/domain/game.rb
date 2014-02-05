@@ -34,6 +34,7 @@ class Game
 
   def next_turn
     @turn = @turn + 1
+    @points = @points - 1000
     @jars.toggle_state(@turn)
   end
 
