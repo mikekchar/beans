@@ -15,7 +15,7 @@ module UI
     end
 
     def render
-      lines = PointsView.new(@game.points).render +
+      lines = PointsView.new(@game.points, @game.winnings).render +
         TurnView.new(@game.turn).render +
         JarView.new(@game.jars).render + 
         HandView.new(@game.hand).render

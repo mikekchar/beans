@@ -1,4 +1,6 @@
 class Jar
+  attr_reader :beans
+
   def initialize(beans=[])
     @beans = beans
     @open = true
@@ -44,6 +46,16 @@ class Jar
   def beans_that_are(colour)
     @beans.select { |bean| bean.colour == colour }
   end
+
+  def is_full?
+    if @beans.size == 6
+      colour = @beans[0].colour
+      result = @beans.select { |b| b.colour == colour }
+      return result.size == 6
+    end
+    false
+  end
+
 end
 
 

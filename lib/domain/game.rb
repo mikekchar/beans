@@ -1,11 +1,13 @@
 require 'domain/bean'
 require 'domain/hand'
 require 'domain/jars'
+require 'domain/snap'
 require 'set'
 
 class Game
 
-  attr_reader :hand, :jars, :turn, :points
+  attr_reader :hand, :jars, :turn, :points, :winnings
+  attr_writer :winnings
 
   BEAN_COLOURS = Set.new(
     [:red, :green, :blue, :yellow, :black]
@@ -15,11 +17,13 @@ class Game
   def initialize
     @turn = 1
     @points = 1000000
+    @winnings = 0
     @hand = Hand.new
     @jars = Jars.new(BEAN_COLOURS.length)
     @jars.last.add_beans(BEAN_COLOURS.map { |colour|
       Array.new(BEANS_PER_COLOUR) { Bean.new(colour) }
     }.flatten)
+    @snapped = Snap.new
   end
 
   def take_bean_from(jar)
@@ -34,6 +38,7 @@ class Game
 
   def next_turn
     @turn = @turn + 1
+    @points = @points - 1000
     @jars.toggle_state(@turn)
   end
 
@@ -41,4 +46,7 @@ class Game
     next_turn
   end
 
+  def snapped?
+    @snapped.is_snapable?(jars)
+  end
 end
