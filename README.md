@@ -16,8 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-This is a test of thingy.
-
 #Description
 There are 5 jars, numbered 1-5.  The last jar contains 30 
 jelly beans; 6 each of the following colours: red, blue, 
